@@ -11,25 +11,23 @@ class CellPhone {
 	void call(int time) throws IllegalArgumentException {
 		if (time < 0) {
 			throw new IllegalArgumentException("통화시간 입력오류");
-		} else {
-			battery -= time * 0.5;
-			if (battery < 0) {
-				battery = 0;
-			}
 		}
 		System.out.println("통화 시간 : " + time + "분");
+		battery -= time * 0.5;
+		if (battery < 0) {
+			battery = 0;
+		}
 	}
 
 	void charge(int time) throws IllegalArgumentException {
 		if (time < 0) {
 			throw new IllegalArgumentException("충전시간 입력오류");
-		} else {
-			battery += time * 3;
-			if (battery > 100) {
-				battery = 100;
-			}
 		}
 		System.out.println("충전 시간 : " + time + "분");
+		battery += time * 3;
+		if (battery > 100) {
+			battery = 100;
+		}
 	}
 
 	void printBattery() {
@@ -37,7 +35,7 @@ class CellPhone {
 	}
 
 	boolean isSame(CellPhone other) {
-		return this.model.equalsIgnoreCase(other.model);
+		return model.equalsIgnoreCase(other.model);
 	}
 }
 
@@ -46,15 +44,19 @@ public class CellPhoneTest {
 	public static void main(String[] args) {
 		CellPhone myPhone = new CellPhone("GALAXY-7");
 
+		myPhone.charge(20); // 20분간 충전을 한다.
+		myPhone.printBattery();
+
+		myPhone.call(300); // 300분간 통화를 한다.
+		myPhone.printBattery();
+
+		myPhone.charge(50); // 50분간 충전을 한다.
+		myPhone.printBattery();
+
+		myPhone.call(40); // 40분간 통화를 한다.
+		myPhone.printBattery();
+
 		try {
-			myPhone.charge(20); // 20분간 충전을 한다.
-			myPhone.printBattery();
-			myPhone.call(300); // 300분간 통화를 한다.
-			myPhone.printBattery();
-			myPhone.charge(50); // 50분간 충전을 한다.
-			myPhone.printBattery();
-			myPhone.call(40); // 40분간 통화를 한다.
-			myPhone.printBattery();
 			myPhone.call(-20); // 통화시간입력오류
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
