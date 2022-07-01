@@ -58,6 +58,7 @@ public class CellPhoneTest {
 			myPhone.call(-20); // 통화시간입력오류
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 		CellPhone yourPhone = new CellPhone("galaxy-7");
