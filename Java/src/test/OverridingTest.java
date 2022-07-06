@@ -1,7 +1,7 @@
 package test;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 
 class MySum {
 	int first;
@@ -12,23 +12,25 @@ class MySum {
 		this.second = second;
 	}
 
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { // 자바 모든 클래스 타입 객체는 obj 전달 가능
 		if (obj instanceof MySum) {
-			return toString().equals(((MySum) obj).toString());
+//			return toString().equals(((MySum) obj).toString());
+			return toString().equals(obj.toString());
 		} else {
 			return false;
 		}
 	}
 
 	public String toString() {
-		return String.valueOf(first + second);
+		return String.valueOf(first + second); // String.valueOf int->String
 	}
 
 	String createTime() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년도 MM월 dd일 HH시 mm분 ss초");
-		Calendar cal = Calendar.getInstance();
-		String result = sdf.format(cal.getTime());
-		return result;
+		return sdf.format(new Date());
+//		Calendar cal = Calendar.getInstance();
+//		String result = sdf.format(cal.getTime());
+//		return result;
 	}
 }
 
