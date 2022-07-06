@@ -15,7 +15,7 @@ class SameSentence {
 		} else {
 			result.add("첫번째 배열의 갯수 = " + list1.size());
 			result.add("두번째 배열의 갯수 = " + list2.size());
-			result.add("총 배열의 갯수 = " + list1.size() + list2.size());
+			result.add("총 배열의 갯수 = " + (list1.size() + list2.size()));
 			return result;
 		}
 	}
