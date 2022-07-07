@@ -19,12 +19,31 @@ public class PhoneMapTest {
 		phone.put(names[3], phone4);
 
 		Set<String> keys = phone.keySet();
-		for (String k : keys) {
-			System.out.print(k + " = ");
-			for (int i = 0; i < phone.get(k).length; i++) {
-				System.out.print(phone.get(k)[i] + " ");
+		for (String s : keys) {
+			System.out.print(s + " = ");
+			String[] p = phone.get(s);
+			for (String sp : p) { // 2중 향상된 for문
+				System.out.print(sp + " ");
 			}
 			System.out.println("");
+		}
+//		for (String k : keys) {
+//			System.out.print(k + " = ");
+//			for (int i = 0; i < phone.get(k).length; i++) {
+//				System.out.print(phone.get(k)[i] + " ");
+//			}
+//			System.out.println("");
+//		}
+
+//		명령행 매개변수로 우리엄마 입력시 우리엄마 정보만 출력
+		if (phone.containsKey(args[0])) {
+			String[] result = phone.get(args[0]);
+			System.out.print(args[0] + " - ");
+			for (String r : result) {
+				System.out.print(r + " ");
+			}
+		} else {
+			System.out.println("해당 정보는 입력된 적이 없습니다.");
 		}
 	}
 
