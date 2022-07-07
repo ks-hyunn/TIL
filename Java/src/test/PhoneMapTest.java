@@ -36,8 +36,17 @@ public class PhoneMapTest {
 //		}
 
 //		명령행 매개변수로 우리엄마 입력시 우리엄마 정보만 출력
-		if (phone.containsKey(args[0])) {
-			String[] result = phone.get(args[0]);
+//		if (phone.containsKey(args[0])) {
+//			String[] result = phone.get(args[0]);
+//			System.out.print(args[0] + " - ");
+//			for (String r : result) {
+//				System.out.print(r + " ");
+//			}
+//		} else {
+//			System.out.println("해당 정보는 입력된 적이 없습니다.");
+//		}
+		String[] result = phone.get(args[0]);
+		if (result != null) {
 			System.out.print(args[0] + " - ");
 			for (String r : result) {
 				System.out.print(r + " ");
