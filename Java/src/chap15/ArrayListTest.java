@@ -22,15 +22,15 @@ class Employee {
 public class ArrayListTest {
 
 	public static void main(String[] args) {
-		ArrayList list = new ArrayList(5); // 초기 5개 생성 이후 5개씩 자동 생성, 삭제
+		ArrayList<Employee> list = new ArrayList<Employee>(5); // 초기 5개 생성 이후 5개씩 자동 생성, 삭제 / Employee 객체만 저장가능
 
 //		추가 add(값), insertAt(index, 값) / 수정 set(index, 값) / 삭제 remove(index or 값)
-		list.add("java");
-		list.add(100);
-		list.add(3.14);
-		list.add("jsp");
-		list.add(true); // 5
-		list.add('a');
+//		list.add("java");
+//		list.add(100);
+//		list.add(3.14);
+//		list.add("jsp");
+//		list.add(true); // 5
+//		list.add('a');
 
 		Employee e1 = new Employee(100, "김사원", 67000.88);
 		list.add(e1);

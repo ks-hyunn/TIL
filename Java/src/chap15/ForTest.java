@@ -19,26 +19,30 @@ public class ForTest {
 		}
 		System.out.println("=========================");
 
-		ArrayList list = new ArrayList();
+//		1. 여러가지 타입 저장 또는 2. String 타입만 저장 (동적 크기의 String 배열 -> <String>) 
+		ArrayList<String> list = new ArrayList<String>();
 		list.add("java");
 		list.add("db");
 		list.add("web client");
 		list.add("web server");
 		list.add("ai");
 		list.add("spring");
-		list.add(100);
+//		list.add(100);
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		System.out.println("=========================");
 
-		for (Object s : list) {
-			if (s instanceof String) {
-				System.out.println(((String) s).toUpperCase());
-			} else {
-				System.out.println(s);
-			}
+		for (String s : list) {
+			System.out.println(s.toUpperCase());
 		}
+//		for (Object s : list) {
+//			if (s instanceof String) {
+//			System.out.println(((String) s).toUpperCase());
+//			} else {
+//				System.out.println(s);
+//			}
+//		}
 	}
 
 }
