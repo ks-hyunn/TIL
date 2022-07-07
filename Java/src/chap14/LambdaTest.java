@@ -1,6 +1,6 @@
 package chap14;
 
-@FunctionalInterface
+@FunctionalInterface // @ annotation -> 컴파일러에게 알려주는 주석
 interface I1 {
 	/* public abstract */ void m1();
 //	void m2(); // 추가시 람다식 오류
