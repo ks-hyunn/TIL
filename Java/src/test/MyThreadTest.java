@@ -1,38 +1,38 @@
 package test;
 
 class MusicThread extends Thread {
-	public MusicThread(String name) {
+	MusicThread(String name) {
 		super(name);
 	}
 
 	public void run() {
-		for (int i = 0; i < 3; i++) {
-			System.out.println("음악듣는중입니다.");
+		for (int i = 1; i <= 3; i++) {
+			System.out.println(getName() + "듣는중입니다." + i);
 		}
 	}
 
 }
 
 class DownloadThread extends Thread {
-	public DownloadThread(String name) {
+	DownloadThread(String name) {
 		super(name);
 	}
 
 	public void run() {
-		for (int i = 0; i < 10; i++) {
-			System.out.println("다운로드중입니다.");
+		for (int i = 1; i <= 10; i++) {
+			System.out.println(getName() + "중입니다." + i);
 		}
 	}
 }
 
 class NewsThread extends Thread {
-	public NewsThread(String name) {
+	NewsThread(String name) {
 		super(name);
 	}
 
 	public void run() {
-		for (int i = 0; i < 5; i++) {
-			System.out.println("뉴스보는중입니다.");
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(getName() + "보는중입니다." + i);
 		}
 	}
 }

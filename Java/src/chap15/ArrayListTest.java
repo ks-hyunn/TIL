@@ -39,7 +39,7 @@ public class ArrayListTest {
 		Employee e3 = new Employee(300, "최과장", 87000.88);
 		list.add(e3);
 
-//		조회 size() -> 저장된 갯수 / get(index) -> 해당 index에 저장된 값 / Object 리턴
+//		조회 size() -> 저장된 갯수 / get(index) -> 해당 index에 저장된 값 -> Object 리턴 / indexOf(object o) -> 저장위치 / contains(Object o) -> 포함여부
 		System.out.println(list.size());
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(i + " 위치의 값 = " + list.get(i)/* .toString() */);
