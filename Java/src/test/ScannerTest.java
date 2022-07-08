@@ -32,8 +32,6 @@ public class ScannerTest {
 				System.out.print("비밀번호 : ");
 				String userPw = scan.next();
 				fw.write(userId + " " + userPw + "\n");
-				fw.close();
-
 			} else if (menu == 2) {
 				System.out.println("로그인 화면으로 이동합니다.");
 				System.out.print("아이디 : ");
@@ -57,6 +55,9 @@ public class ScannerTest {
 			}
 
 		}
+		fw.close();
+		userScan.close();
+		scan.close();
 	}
 
 }
