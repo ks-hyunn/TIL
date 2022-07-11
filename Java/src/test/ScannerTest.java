@@ -10,8 +10,6 @@ public class ScannerTest {
 	public static void main(String[] args) throws IOException {
 		Scanner scan = new Scanner(System.in);
 		FileWriter fw = new FileWriter("src/test/user.txt", true);
-		FileReader fr = new FileReader("src/test/user.txt");
-		Scanner userScan = new Scanner(fr);
 
 		while (true) {
 			System.out.println("1. 회원가입");
@@ -39,15 +37,24 @@ public class ScannerTest {
 				System.out.print("비밀번호 : ");
 				String userPw = scan.next();
 				String userLogin = userId + " " + userPw;
+
+				FileReader fr = new FileReader("src/test/user.txt");
+				Scanner userScan = new Scanner(fr);
+				boolean exists = false;
+
 				while (userScan.hasNextLine()) {
 					String userLine = userScan.nextLine();
 					if (userLogin.equals(userLine)) {
 						System.out.println("정상적으로 로그인되었습니다. " + userId + " 회원님");
+						exists = true;
 						break;
-					} else {
-						System.out.println("회원가입 해주세요.");
 					}
 				}
+				if (exists == false) {
+					System.out.println("회원가입 해주세요.");
+				}
+				userScan.close();
+				fr.close();
 			} else if (menu == 3) {
 				System.out.println("장바구니 화면으로 이동합니다.");
 			} else if (menu == 4) {
@@ -56,7 +63,6 @@ public class ScannerTest {
 
 		}
 		fw.close();
-		userScan.close();
 		scan.close();
 	}
 
