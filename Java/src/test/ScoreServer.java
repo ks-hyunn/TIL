@@ -24,8 +24,8 @@ public class ScoreServer {
 						String[] data = dataLine[i].split(" ");
 						int sum = (Integer.parseInt(data[1]) + Integer.parseInt(data[2]) + Integer.parseInt(data[3]));
 						Double avg = (double) sum / 3;
-						fw.write(data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + sum + df.format(avg)
-								+ "\n");
+						fw.write(data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + sum + " "
+								+ df.format(avg) + "\n");
 					}
 				}
 				fw.close();
