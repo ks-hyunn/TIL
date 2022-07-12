@@ -42,5 +42,59 @@ select employee_name, salary, hire_date from employees where hire_date = '2008-1
 -- 유사한 형태 조회 like 문자열의 패턴 유사, % 값의 자릿수 무관, 모든 문자 무관, _ 값의 자릿수 고정(1개 = 1자리), 모든 문자 무관
 select employee_name, salary * 0.05 from employees where employee_name like '최%'; -- 이름이 최씨인 사원의 이름과 보너스 조회. 보너스는 급여의 5% 계산
 select employee_name, salary * 0.05 from employees where employee_name like '최__'; -- 이름이 최씨인 사원의 이름과 보너스 조회. 보너스는 급여의 5% 계산
-select employee_name, hire_date from employees where hire_date like '2020-%';-- 입사일이 2020년도 입사한 사원의 이름과 입사일 조회
--- 
+
+-- 날짜 대소비교 (숫자처럼) 크다-최근, 작다-오래 / 패턴비교 (문자처럼)
+select employee_name, hire_date from employees where hire_date like '2020-%'; -- 입사일이 2020년도 입사한 사원의 이름과 입사일 조회
+select employee_name, hire_date from employees where hire_date >= '2020-01-01' and hire_date <= '2020-12-31';
+select employee_name, hire_date from employees where hire_date like '2020%';
+select employee_name, hire_date from employees where hire_date like '2020______'; -- -월2-일2 -> 6자리
+select employee_name, hire_date from employees where hire_date like '%12'; -- 12일에 입사한 사람
+
+-- between ~ and -구간 연산자 (숫자, 날짜, 문자 - 작다-사전앞, 크다-사전뒤 -> 숫자<대문자<소문자<...<한글)
+select employee_name, salary from employees where salary >= 50000 and salary <= 70000; -- 급여가 5만 이상이고 7만 이하의 사원 이름과 급여 조회
+select employee_name, salary from employees where salary between 50000 and 70000;
+
+-- in(같은 타입, 같은 타입) - 목록 연산자
+select employee_id, employee_name from employees where employee_id = 100 or employee_id = 300 or employee_id = 250 or employee_id = 204; -- 사번이 100, 300, 250, 204 사원의 사번과 이름 조회
+select employee_id, employee_name from employees where employee_id in (100, 300, 250, 204);
+
+INSERT INTO EMPLOYEES VALUES(400, "최신입", 40000.0, null, null);
+INSERT INTO EMPLOYEES VALUES(401, "김신입", 40000.0, now(), 20);
+INSERT INTO EMPLOYEES VALUES(402, "오신입", 40000.0, now(), 30);
+INSERT INTO EMPLOYEES VALUES(403, "강신입", 40000.0, now(), 40);
+INSERT INTO EMPLOYEES VALUES(404, "최신입", 40000.0, null, null);
+select * from employees;
+
+-- is null, is not null - null값 비교 연산자
+select * from employees where hire_date = null; -- 입사일이 없는 사원 조회
+select * from employees where hire_date is null;
+select * from employees where department_id is null; -- 부서 배정받지 못한 사원 조회
+select * from employees where department_id is not null; -- 부서 배정받은 사원 조회
+
+-- 조회시 별명(alias) -> 조회시 임시 사용하는 다른 컬럼명
+select employee_name, salary * 12 from employees;
+select employee_name, salary * 12 as 연봉 from employees;
+select employee_name 사원명, salary * 12 '사원의 연봉' from employees;
+select employee_name 사원명, salary 월급, salary * 12 '사원의 연봉' from employees;
+
+-- ifnull(컬럼명, 임시값) 컬럼명의 값이 null이면 임시값으로 치환
+insert into employees values(405, '김경력', null, now(), 30);
+select employee_name 사원명, salary 월급, salary * 12 '사원의 연봉' from employees;
+select employee_name 사원명, salary 월급, ifnull(salary, 1000) * 12 '사원의 연봉' from employees;
+
+-- 조회시 두개 이상의 컬럼 연결 -> concat()
+select concat(employee_name, ' 사원은 ', salary, '의 월급을 받습니다.') 급여정보 from employees; -- xxx 사원은 xxx의 월급을 받습니다.
+select concat(employee_name, ' 사원은 ', ifnull(salary, 0), '의 월급을 받습니다.') '급여 정보' from employees;
+
+-- order by 컬럼명 asc(오름차순)/desc(내림차순)
+select * from employees order by employee_id; -- asc 기본값
+select * from employees order by employee_id desc;
+select * from employees order by salary desc, employee_id desc; -- 급여 많은 사원부터 조회. 동일 급여 사원은 사번 큰 사원부터
+select employee_id, salary from employees order by 2 desc, 1 desc; -- order by 뒤에 컬럼 순서로 대체 가능
+select employee_id 사번, salary from employees order by 2 desc, 사번 desc; -- alias도 가능
+select employee_id, salary from employees order by salary desc; -- null값은 가장 작은 값으로 계산
+
+-- limit -> 조회 갯수 제한 (limit 시작인덱스, 조회갯수)
+select employee_name, salary from employees order by salary desc limit 3; -- 급여 많은 사원부터 상위 3명만 조회 -> limit 0, 3 동일 (0 생략가능)
+select employee_name, salary from employees order by salary desc limit 3, 4;-- 급여 많은 사원부터 정렬하되 4, 5, 6, 7번째 많은 사원만 조회 -> 3번 인덱스부터 4개
+
