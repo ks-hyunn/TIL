@@ -98,3 +98,22 @@ select employee_id, salary from employees order by salary desc; -- null값은 �
 select employee_name, salary from employees order by salary desc limit 3; -- 급여 많은 사원부터 상위 3명만 조회 -> limit 0, 3 동일 (0 생략가능)
 select employee_name, salary from employees order by salary desc limit 3, 4;-- 급여 많은 사원부터 정렬하되 4, 5, 6, 7번째 많은 사원만 조회 -> 3번 인덱스부터 4개
 
+show databases; -- 데이터베이스 전체 조회
+select database(); -- 사용중인 데이터베이스 조회
+show tables; -- 사용중인 데이터베이스 내부의 테이블 조회
+
+-- 테이블 복사
+create table emp_copy (select employee_name, salary, hire_date from employees);
+show tables;
+select * from emp_copy;
+
+/*
+mysql -u 계정명 -p;
+create database DB명;
+create user '유저명'@'% or *' identified by '비밀번호';
+grant all privileges on DB명.*(모든권한) to 계정명@'%';
+select user(); -- 접속 계정 조회
+*/
+
+use empdb;
+select * from test;
