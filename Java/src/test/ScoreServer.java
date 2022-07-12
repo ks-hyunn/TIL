@@ -14,19 +14,23 @@ public class ScoreServer {
 			while (true) {
 				Socket s = ss.accept();
 				Scanner scan = new Scanner(s.getInputStream());
-				DecimalFormat df = new DecimalFormat("#.00");
+//				DecimalFormat df = new DecimalFormat("#.00");
 				FileWriter fw = new FileWriter("src/test/output.txt", true);
 
 				while (scan.hasNextLine()) {
-					String fromClient = scan.nextLine();
-					String[] dataLine = fromClient.split("\n");
-					for (int i = 0; i < dataLine.length; i++) {
-						String[] data = dataLine[i].split(" ");
-						int sum = (Integer.parseInt(data[1]) + Integer.parseInt(data[2]) + Integer.parseInt(data[3]));
-						Double avg = (double) sum / 3;
-						fw.write(data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + sum + " "
-								+ df.format(avg) + "\n");
-					}
+//					String fromClient = scan.nextLine();
+//					String[] data = fromClient.split(" ");
+//					int sum = (Integer.parseInt(data[1]) + Integer.parseInt(data[2]) + Integer.parseInt(data[3]));
+//					Double avg = (double) sum / 3;
+//					fw.write(data[0] + " " + data[1] + " " + data[2] + " " + data[3] + " " + sum + " " + df.format(avg)
+//							+ "\n");
+					String name = scan.next();
+					int score1 = scan.nextInt();
+					int score2 = scan.nextInt();
+					int score3 = scan.nextInt();
+					int sum = score1 + score2 + score3;
+					String avg = new DecimalFormat("#.##").format(sum / 3.0);
+					fw.write(name + " " + score1 + " " + score2 + " " + score3 + " " + sum + " " + avg + "\n");
 				}
 				fw.close();
 				s.close();
