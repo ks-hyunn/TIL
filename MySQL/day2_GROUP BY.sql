@@ -1,6 +1,6 @@
 -- GROUP BY - group by 컬럼명을 기준으로 그룹 함수 적용
 select sum(salary) from employees group by department_id; -- 모든 부서에 대해 각 부서별 급여 총합 조회
-select department_id, sum(salary) from employees group by department_id; -- group by 절에서는 집계 함수와 다른 컬럼 같이 조회 가능
+select department_id, sum(salary) from employees group by department_id; -- group by 절에서는 집계 함수와 다른 컬럼 같이 조회 가능(그룹 함수 적용한 컬럼)
 select department_id, sum(salary) from employees group by department_id order by department_id;
 select department_id, sum(salary) from employees group by department_id order by sum(salary) desc limit 3;
 
