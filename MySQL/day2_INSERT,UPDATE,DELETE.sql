@@ -23,3 +23,15 @@ update emp_copy set salary =15000, first_name = '수정' where employee_id = 6;
 
 -- DELETE - delete from 테이블명 where 조건; - where 필수(안쓰면 모든 값 삭제)
 delete from emp_copy where employee_id = 6;
+
+-- IGNORE - 강제 INSERT
+insert ignore into emp_copy values (6, '부장', '심', 50000, '2020');
+select * from emp_copy where employee_id <= 10;
+-- employee_id 컬럼 정의시(create table) unique
+-- employee_id int(5) unique 전제조건
+-- insert into emp_copy values (6, '부장', '심', 50000, now()) on duplicate key update hire_date = now(); -- 키값 중복되면 insert 대신 update해라
+
+select * from emp_copy order by salary desc limit 10;
+select * from emp_copy where first_name = '부장' order by 1 desc;
+
+update emp_copy set salary = salary * 1.2 where first_name = '부장' order by salary asc limit 2; -- update, delete 절에서 limit 사용
