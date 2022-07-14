@@ -10,7 +10,7 @@ select hire_date, first_name from employees where hire_date = @var4;
 select database(), user(), current_user(), version();
 
 -- 내장함수
--- 형변환 - cast(변경할값 as 타입), convert(변경할값, 타입), format(변경할값, 실수자리수)
+-- 형변환 - cast(변경할값 as 타입), convert(변경할값, 타입), format(변경할값, 실수자리수) - 반올림
 -- 정수, 실수
 select 10, cast(10 as decimal(10, 5)), convert(10, decimal(10, 5)), format(10, 5);
 select avg(salary), cast(avg(salary) as signed integer), convert(avg(salary), signed integer), format(avg(salary), 0) from employees;
@@ -62,6 +62,7 @@ select find_in_set('이', '일,이,삼,사'); -- find_in_set(찾을문자, 콤�
 select instr('일이삼사', '이'); -- instr(문자, 찾을문자) - 위치 반환
 select locate('삼사', '일이삼사'); -- locate(찾을문자, 문자) - 위치 반환
 
+-- 연습
 select * from employees where hire_date like '2006%';
 select * from employees where hire_date >= '2006-01-01 00:00:00' and hire_date <= '2006-12-31 23:59:59';
 select * from employees where locate('2006',hire_date) = 1; -- instr(hire_date, '2006') = 1
@@ -71,9 +72,13 @@ select * from employees where hire_date like '%-06-%';
 select * from employees where locate('-06',hire_date) = 5; -- instr(hire_date, '2006') = 1
 select * from employees where substring(hire_date, 6, 2) = '06';
 
-
-
-
-
-
-
+-- bin, hex, oct - 2, 16, 8진수 변환
+-- insert(문자, 시작위치, 지울갯수, 바꿀문자) - 지정 숫자 갯수만큼 삭제하고 새로운 문자 추가
+select 'ABCDEF', insert('ABCDEF', 3, 2, '-');
+-- replace(문자, 바꿀문자, 대체문자)
+select 'ABCDEF', replace('ABCDEF', 'CD' , '-');
+-- repeat(문자, 반복횟수)
+select repeat('abc', 10);
+select first_name 이름, insert(phone_number, 1, 12, repeat('*', 12)) 핸드폰번호 from employees;
+select first_name 이름, insert(phone_number, 9, 4, repeat('*', 4)) 핸드폰번호 from employees;
+select insert(first_name, 2, char_length(first_name)-1, repeat('*', char_length(first_name)-1)) 이름 from employees;
