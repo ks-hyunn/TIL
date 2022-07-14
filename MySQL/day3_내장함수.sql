@@ -10,7 +10,7 @@ select hire_date, first_name from employees where hire_date = @var4;
 select database(), user(), current_user(), version();
 
 -- 내장함수
--- 형변환 - cast(변경할값 as 타입), convert(변경할값, 타입), format(변경할값, 실수자리수) - 반올림
+-- 형변환 - cast(변경할값 as 타입), convert(변경할값, 타입), format(변경할값, 실수자리수) - 마지막자리 반올림
 -- 정수, 실수
 select 10, cast(10 as decimal(10, 5)), convert(10, decimal(10, 5)), format(10, 5);
 select avg(salary), cast(avg(salary) as signed integer), convert(avg(salary), signed integer), format(avg(salary), 0) from employees;
@@ -51,7 +51,7 @@ set @charvar2 = '자바';
 select bit_length(@charvar1), length(@charvar1), char_length(@charvar1); -- bit_length() - 비트 수 / length() - 바이트 수 / char_length() - 글자 수
 select bit_length(@charvar2), length(@charvar2), char_length(@charvar2);
 select first_name from employees where char_length(first_name) = 3;
--- concat - 문자열 합침
+-- concat() - 문자열 합침
 select concat('a','b','cc'), concat_ws('a','b','cc'); -- concat_ws(분리자,합칠문자1,합칠문자2) - 문자사이 분리자
 select concat_ws(':','b','cc','ddd');
 -- 문자열 검색
@@ -72,7 +72,7 @@ select * from employees where hire_date like '%-06-%';
 select * from employees where locate('-06',hire_date) = 5; -- instr(hire_date, '2006') = 1
 select * from employees where substring(hire_date, 6, 2) = '06';
 
--- bin, hex, oct - 2, 16, 8진수 변환
+-- bin(), hex(), oct() - 2, 16, 8진수 변환
 -- insert(문자, 시작위치, 지울갯수, 바꿀문자) - 지정 숫자 갯수만큼 삭제하고 새로운 문자 추가
 select 'ABCDEF', insert('ABCDEF', 3, 2, '-');
 -- replace(문자, 바꿀문자, 대체문자)
@@ -82,3 +82,69 @@ select repeat('abc', 10);
 select first_name 이름, insert(phone_number, 1, 12, repeat('*', 12)) 핸드폰번호 from employees;
 select first_name 이름, insert(phone_number, 9, 4, repeat('*', 4)) 핸드폰번호 from employees;
 select insert(first_name, 2, char_length(first_name)-1, repeat('*', char_length(first_name)-1)) 이름 from employees;
+-- left(문자, 가져올 갯수), right(문자, 가져올 갯수)
+select left("MySQL", 3), right("MySQL", 3);
+-- upper(문자), lower(문자) - 대소문자로 변경
+-- lpad(문자, 늘릴 갯수, 채울 문자), rpad(문자, 늘릴 갯수, 채울 문자), ltrim(문자), rtrim(문자), trim(문자)
+
+-- 숫자
+-- round(숫자, 실수자리수) - 마지막자리 반올림, truncate(숫자, 실수자리수) - 마지막자리 내림
+select 1234.5678, round(1234.5678, 3), truncate(1234.5678, 3);
+select 1234.5678, round(1234.5678, -3), truncate(1234.5678, -3); -- 천의자리
+-- mod(기준숫자, 나눌숫자) - 나머지함수(java - %)
+select mod(100, 1);
+select employee_id 사번, if(mod(employee_id, 2) = 0, '짝수사번', '홀수사번') 사번의성격 from employees order by 1;
+
+-- 날짜 및 시간
+select now(), sysdate(), curdate(), curtime();
+select date(now()), time(now()); -- date() - 날짜만 출력, time() - 시간만 출력
+select year(now()), month(now()), day(now()), hour(now()), minute(now()), second(now()); -- 년 월 일 시 분 초 출력
+select hire_date from employees where year(hire_date) = '2006';
+select hire_date from employees where month(hire_date) = '6';
+-- 날짜 및 시간 사이 더하기 빼기
+-- adddate(날짜, interval 뺄숫자 단위), subdate(날짜, interval 더할숫자 단위)
+select curdate() 오늘날짜, subdate(curdate(), interval 1 day) 어제날짜, adddate(curdate(), interval 1 day) 내일날짜, adddate(curdate(), interval 1 month) 한달후날짜, adddate(curdate(), interval 1 year) '1년후날짜';
+-- addtime(시간, 더할시간), subtime(시간, 뺄시간)
+select addtime('19:00:00', '2:00:00');
+select addtime('2002-12-12 23:00:00', '2:00:00');
+-- 두 날짜(시간) 사이의 차이
+-- datediff(날짜, 날짜) - 일단위 반환, timediff(시간, 시간)
+select datediff(now(), '2022-06-30');
+select timediff(curtime(), '15:00:00');
+select timediff(now(), '2022-07-13 16:00:00');
+-- period_diff(년도 월, 년도 월) - 월단위 반환(개월차이)
+select period_diff('202307', '202207');
+select period_diff('2023-07', '2022-07'); -- error
+select period_diff(now(), '202207'); -- error
+-- 요일 dayodweek(날짜) - 1부터시작 일요일, weekday(날짜) - 0부터시작 월요일
+select now(), dayofweek(now()), weekday(now());
+select now() 현재시각, case dayofweek(now()) when 1 then '일요일' when 2 then '월요일' when 3 then '화요일' else '수목금토 중 하나' end 현재요일;
+-- date_format(날짜, 보여줄형식) - 대소문자 구분
+select date_format(now(), '%Y/%m/%d %a %W %H-%i-%S');
+select date_format('2022-07-07', '%y/%c/%e %W %H-%i-%S');
+select date_format('2022-07-07', '%Y');
+select date_format('2022-07-07', '%W');
+select hire_date from employees where date_format(hire_date, '%Y') = '2006';
+select hire_date from employees where date_format(hire_date, '%c') = '6';
+-- %Y - 4자리 연도, %y - 2자리 연도
+-- %m - 2자리 월, %c - 1자리 또는 2자리 월, %M - 영문 월
+-- %d - 2자리 일, %e - 1자리 또는 2자리 일
+-- %a - 영문 요일(축약), %W - 영문 요일(전체)
+-- %H - (24)시간, %h,I - (12)시간
+-- %i - (2자리)분, %S - (2자리)초
+select first_name, hire_date, period_diff(date_format(now(), '%Y%m'), date_format(hire_date, '%Y%m')) 입사경과개월수 from employees;
+select first_name, datediff(now(), hire_date) 입사경과일수, truncate(datediff(now(), hire_date) / 7, 0) 입사경과주수, truncate(datediff(now(), hire_date) / 365, 0) 입사경과년수 from employees;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
