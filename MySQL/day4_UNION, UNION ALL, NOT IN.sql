@@ -33,13 +33,3 @@ select first_name, department_id from employees where department_id in (select d
 select first_name, department_id, salary from employees where salary = (select truncate(avg(salary), -2) from employees);
 -- not in
 select first_name, department_id from employees where department_id not in (select department_id from employees where first_name = 'peter'); -- 50번, 80번 제외한 부서 근무 사원
-
-
-
-
-
-
-
-
-
-
