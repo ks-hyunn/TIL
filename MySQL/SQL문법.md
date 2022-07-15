@@ -17,7 +17,7 @@
 ### DML ( 데이터 조작 언어 )
 
 - 데이터 저장 - 삭제 - 수정
-  - INSERT INTO / DROP / UPDATE
+  - INSERT INTO / DELETE / UPDATE
 
 ### DCL ( 데이터 사용 권한 제어 언어 )
 
