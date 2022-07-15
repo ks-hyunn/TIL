@@ -26,3 +26,18 @@ from employees e inner join departments d on e.department_id = d.department_id
 inner join locations l on d.location_id = l.location_id
 inner join countries c on l.country_id = c.country_id
 where e.department_id in(50, 80, 100) and salary >= 5000;
+
+-- outer join
+select first_name, e.department_id, department_name from employees e inner join departments d on e.department_id = d.department_id;
+select count(*) from employees;
+select count(department_id) from employees; -- 컬럼 안에 not null 갯수
+select first_name, department_id from employees where department_id is null;
+-- inner join - join 하는 2개 테이블 모두에 존재하고 조건 일치하는 데이터만 합침(department_id 가 null인 값은 제외)
+-- outer join - join 하는 2개 테이블 모두에 존재하고 조건 일치하지 않아도 데이터 합침
+-- left outer join / right outer join - 왼쪽(오른쪽) 테이블의 모든 데이터 조회(null 값도 출력)
+select first_name, e.department_id, department_name from employees e left outer join departments d on e.department_id = d.department_id; -- 부서 소속되지 않은 사원도 조회
+select first_name, e.department_id, department_name from employees e right outer join departments d on e.department_id = d.department_id; -- 근무 부서원이 없는 부서명도 조회
+select first_name, d.department_id, department_name from employees e right outer join departments d on e.department_id = d.department_id; -- 근무 부서원이 없는 부서명, 부서코드도 조회
+-- 106개 조회 - employees + departments 조인 조건 / - 107개 조회 - employees + departments 조인 조건 + employees 존재하는 모든 데이터 / - 122개 조회 - employees + departments 조인 조건 + departments 존재하는 모든 데이터
+select first_name, ifnull(e.department_id, '-'), ifnull(department_name, '소속부서없음') from employees e left outer join departments d on e.department_id = d.department_id;
+select ifnull(first_name, '부서원없음'), d.department_id, department_name from employees e right outer join departments d on e.department_id = d.department_id;
