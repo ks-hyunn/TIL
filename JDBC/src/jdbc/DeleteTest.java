@@ -20,10 +20,9 @@ class DeleteTest {
 //			create table, drop table -> workbench에서만 수행할 것을 권고
 //			2-2. sql 저장 - 전송
 			Statement st = con.createStatement(); // 빈 문장 생성
-			int rowCount = st.executeUpdate
+			int rowCount = st.executeUpdate("delete from test where a = 1"); // 조건에 맞는 데이터(레코드) 삭제 -> 테이블은 존재
 //			("create table test(a int, b varchar(10))"); // 쿼리 실행 후 변화된 행 갯수 반환
 //			("insert into test values(1, 'java')");
-			("delete from test where a = 1"); // 조건에 맞는 데이터(레코드) 삭제 -> 테이블은 존재
 //			("drop table test"); // 레코드와 테이블 둘다 삭제
 			System.out.println("저장 행의 갯수 = " + rowCount);
 
