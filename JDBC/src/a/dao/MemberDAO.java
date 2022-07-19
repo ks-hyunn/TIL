@@ -1,0 +1,123 @@
+package a.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import a.dto.MemberDTO;
+import a.view.MemberDeleteView;
+
+// data access object = jdbc 수행 코드
+// member 테이블에 대한 sql 작업 메소드 구현
+public class MemberDAO {
+// insert, select, update, delete - crud - 기본기능
+	public int insertMember(MemberDTO dto) {
+		int result = 0;
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String query = "insert into member values(?, ?, ?, ?, ?, now())";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, dto.getId());
+			ps.setInt(2, dto.getPassword());
+			ps.setString(3, dto.getName());
+			ps.setString(4, dto.getPhone());
+			ps.setString(5, dto.getEmail());
+
+			result = ps.executeUpdate();
+			System.out.println("insertMember - 변화행의 갯수 = " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return result;
+	}
+
+	public int updatetMember(MemberDTO dto) {
+		int result = 0;
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			PreparedStatement ps = null;
+			if (dto.getName() != null) {
+				String query = "update member set name = ? where id = ?";
+				ps = con.prepareStatement(query);
+				ps.setString(1, dto.getName());
+				ps.setString(2, dto.getId());
+			} else if (dto.getPassword() != 0) {
+				String query = "update member set password = ? where id = ?";
+				ps = con.prepareStatement(query);
+				ps.setInt(1, dto.getPassword());
+				ps.setString(2, dto.getId());
+			} else if (dto.getPhone() != null) {
+				String query = "update member set phone = ? where id = ?";
+				ps = con.prepareStatement(query);
+				ps.setString(1, dto.getPhone());
+				ps.setString(2, dto.getId());
+			} else if (dto.getEmail() != null) {
+				String query = "update member set email = ? where id = ?";
+				ps = con.prepareStatement(query);
+				ps.setString(1, dto.getEmail());
+				ps.setString(2, dto.getId());
+			}
+
+			result = ps.executeUpdate();
+			System.out.println("insertMember - 변화행의 갯수 = " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return result;
+	}
+
+	public int deleteMember(String id, int password) {
+		int result = 0;
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String valid = "select password from member where id = ?";
+			PreparedStatement ps2 = con.prepareStatement(valid);
+			ps2.setString(1, id);
+			ResultSet rs = ps2.executeQuery();
+			rs.next();
+			if (rs.getInt(1) == password) {
+				String query = "delete from member where id = ?";
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, id);
+
+				result = ps.executeUpdate();
+				System.out.println("insertMember - 변화행의 갯수 = " + result);
+
+			} else {
+				System.out.println("암호를 확인해주세요");
+				MemberDeleteView view = new MemberDeleteView();
+				view.input();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return result;
+	}
+}
