@@ -48,28 +48,47 @@ public class MemberDAO {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
 
-			PreparedStatement ps = null;
+//			PreparedStatement ps = null;
+//			if (dto.getName() != null) {
+//				String query = "update member set name = ? where id = ?";
+//				ps = con.prepareStatement(query);
+//				ps.setString(1, dto.getName());
+//				ps.setString(2, dto.getId());
+//			} else if (dto.getPassword() != 0) {
+//				String query = "update member set password = ? where id = ?";
+//				ps = con.prepareStatement(query);
+//				ps.setInt(1, dto.getPassword());
+//				ps.setString(2, dto.getId());
+//			} else if (dto.getPhone() != null) {
+//				String query = "update member set phone = ? where id = ?";
+//				ps = con.prepareStatement(query);
+//				ps.setString(1, dto.getPhone());
+//				ps.setString(2, dto.getId());
+//			} else if (dto.getEmail() != null) {
+//				String query = "update member set email = ? where id = ?";
+//				ps = con.prepareStatement(query);
+//				ps.setString(1, dto.getEmail());
+//				ps.setString(2, dto.getId());
+//			}
+			String colName = "";
+			String colValue = "";
 			if (dto.getName() != null) {
-				String query = "update member set name = ? where id = ?";
-				ps = con.prepareStatement(query);
-				ps.setString(1, dto.getName());
-				ps.setString(2, dto.getId());
+				colName = "name";
+				colValue = dto.getName();
 			} else if (dto.getPassword() != 0) {
-				String query = "update member set password = ? where id = ?";
-				ps = con.prepareStatement(query);
-				ps.setInt(1, dto.getPassword());
-				ps.setString(2, dto.getId());
+				colName = "password";
+				colValue = String.valueOf(dto.getPassword());
 			} else if (dto.getPhone() != null) {
-				String query = "update member set phone = ? where id = ?";
-				ps = con.prepareStatement(query);
-				ps.setString(1, dto.getPhone());
-				ps.setString(2, dto.getId());
+				colName = "phone";
+				colValue = dto.getPhone();
 			} else if (dto.getEmail() != null) {
-				String query = "update member set email = ? where id = ?";
-				ps = con.prepareStatement(query);
-				ps.setString(1, dto.getEmail());
-				ps.setString(2, dto.getId());
+				colName = "email";
+				colValue = dto.getEmail();
 			}
+			String query = "update member set " + colName + " = ? where id = ?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, colValue);
+			ps.setString(2, dto.getId());
 
 			result = ps.executeUpdate();
 			System.out.println("insertMember - 변화행의 갯수 = " + result);
@@ -91,7 +110,7 @@ public class MemberDAO {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
 
-			String valid = "select password from member where id = ?";
+			String valid = "select password, id from member where id = ?";
 			PreparedStatement ps2 = con.prepareStatement(valid);
 			ps2.setString(1, id);
 			ResultSet rs = ps2.executeQuery();
@@ -104,12 +123,11 @@ public class MemberDAO {
 				result = ps.executeUpdate();
 				System.out.println("insertMember - 변화행의 갯수 = " + result);
 
-			} else {
+			} else if (rs.getInt(1) != password) {
 				System.out.println("암호를 확인해주세요");
 				MemberDeleteView view = new MemberDeleteView();
 				view.input();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
