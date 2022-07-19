@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import a.view.MemberDeleteView;
 import a.view.MemberInsertView;
+import a.view.MemberSelectView;
 import a.view.MemberUpdateView;
 
 public class MemberMain {
@@ -32,6 +33,9 @@ public class MemberMain {
 				view.input();
 			} else if (menu == 3) {
 				MemberDeleteView view = new MemberDeleteView();
+				view.input();
+			} else if (menu == 4) {
+				MemberSelectView view = new MemberSelectView();
 				view.input();
 			}
 		}

@@ -138,4 +138,47 @@ public class MemberDAO {
 		}
 		return result;
 	}
+
+	public MemberDTO selectOneMember(String id, int password) {
+		Connection con = null;
+		MemberDTO dto = new MemberDTO();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String valid = "select password, id from member where id = ?";
+			PreparedStatement ps2 = con.prepareStatement(valid);
+			ps2.setString(1, id);
+			ResultSet rs = ps2.executeQuery();
+
+			if (rs.next() == false) {
+				System.out.println("아이디를 확인해주세요");
+			} else if (rs.getInt(1) != password) {
+				System.out.println("암호를 확인해주세요");
+			} else if (rs.getInt(1) == password) {
+				String query = "select * from member where id = ?";
+				PreparedStatement ps = con.prepareStatement(query);
+				ps.setString(1, id);
+				ResultSet rs2 = ps.executeQuery();
+				rs2.next();
+
+				dto.setId(rs2.getString("id"));
+				dto.setPassword(rs2.getInt("password"));
+				dto.setName(rs2.getString("name"));
+				dto.setPhone(rs2.getString("phone"));
+				dto.setEmail(rs2.getString("email"));
+				dto.setRegdate(rs2.getString("regdate"));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return dto;
+	}
 }
