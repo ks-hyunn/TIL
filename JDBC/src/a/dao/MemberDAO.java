@@ -250,4 +250,61 @@ public class MemberDAO {
 		return dtos;
 	}
 
+	public int getTotalMember() {
+		int result = 0;
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String query = "select count(*) from member";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return result;
+	}
+
+	public ArrayList<MemberDTO> selectPagingMember(int page, int recordPerPage) {
+		Connection con = null;
+		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String query = "select * from member order by regdate limit ?, ?";
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ps.setInt(1, (page - 1) * recordPerPage);
+			ps.setInt(2, recordPerPage);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setPassword(-1);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return dtos;
+	}
 }
