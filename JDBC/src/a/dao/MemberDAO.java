@@ -237,10 +237,8 @@ public class MemberDAO {
 				dto.setEmail(rs.getString("email"));
 				dto.setRegdate(rs.getString("regdate"));
 				dto.setPassword(-1);
-
 				dtos.add(dto);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

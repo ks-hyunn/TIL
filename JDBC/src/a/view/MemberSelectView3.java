@@ -14,10 +14,13 @@ public class MemberSelectView3 implements View {
 
 		MemberDAO dao = new MemberDAO();
 		ArrayList<MemberDTO> dtos = dao.selectSearchMember(search);
-		for (MemberDTO dto : dtos) {
-			System.out.println(dto);
+		if (dtos.size() == 0) {
+			System.out.println("검색 결과가 없습니다.");
+		} else {
+			for (MemberDTO dto : dtos) {
+				System.out.println(dto);
+			}
 		}
-
 	}
 
 }

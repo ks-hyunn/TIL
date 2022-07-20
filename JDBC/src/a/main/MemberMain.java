@@ -5,6 +5,7 @@ import java.util.Scanner;
 import a.view.MemberDeleteView;
 import a.view.MemberInsertView;
 import a.view.MemberSelectView;
+import a.view.MemberSelectView2;
 import a.view.MemberSelectView3;
 import a.view.MemberUpdateView;
 
@@ -39,8 +40,16 @@ public class MemberMain {
 				MemberSelectView view = new MemberSelectView();
 				view.input();
 			} else if (menu == 5) {
-				MemberSelectView3 view = new MemberSelectView3();
-				view.input();
+				System.out.println("1. 전체 조회");
+				System.out.println("2. 검색 조회");
+				int menu2 = sc.nextInt();
+				if (menu2 == 1) {
+					MemberSelectView2 view = new MemberSelectView2();
+					view.input();
+				} else if (menu2 == 2) {
+					MemberSelectView3 view = new MemberSelectView3();
+					view.input();
+				}
 			}
 		}
 
