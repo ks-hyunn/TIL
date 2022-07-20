@@ -17,6 +17,11 @@ public class MemberDTO {
 		this.id = id;
 	}
 
+	public String toString() {
+		return "아이디 : " + id + " 비밀번호 : " + password + " 이름 : " + name + " 핸드폰 번호 : " + phone + " 이메일 : " + email
+				+ " 가입한 날짜 : " + regdate;
+	}
+
 	public int getPassword() {
 		return password;
 	}

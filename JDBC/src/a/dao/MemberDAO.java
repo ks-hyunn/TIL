@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import a.dto.MemberDTO;
 import a.view.MemberDeleteView;
@@ -146,7 +147,7 @@ public class MemberDAO {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
 
-			String valid = "select password, id from member where id = ?";
+			String valid = "select password from member where id = ?";
 			PreparedStatement ps2 = con.prepareStatement(valid);
 			ps2.setString(1, id);
 			ResultSet rs = ps2.executeQuery();
@@ -181,4 +182,74 @@ public class MemberDAO {
 		}
 		return dto;
 	}
+
+	public ArrayList<MemberDTO> selectAllMember() {
+		Connection con = null;
+		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String query = "select * from member";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setPassword(-1);
+				dtos.add(dto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return dtos;
+	}
+
+	public ArrayList<MemberDTO> selectSearchMember(String search) {
+		Connection con = null;
+		ArrayList<MemberDTO> dtos = new ArrayList<MemberDTO>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/memberdb", "emp2", "emp2");
+
+			String query = "select * from member where id like ? or name like ? or phone like ? or email like ? ";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, "%" + search + "%");
+			ps.setString(2, "%" + search + "%");
+			ps.setString(3, "%" + search + "%");
+			ps.setString(4, "%" + search + "%");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				MemberDTO dto = new MemberDTO();
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPhone(rs.getString("phone"));
+				dto.setEmail(rs.getString("email"));
+				dto.setRegdate(rs.getString("regdate"));
+				dto.setPassword(-1);
+
+				dtos.add(dto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+		return dtos;
+	}
+
 }

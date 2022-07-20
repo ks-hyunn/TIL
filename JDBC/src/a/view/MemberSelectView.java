@@ -18,8 +18,7 @@ public class MemberSelectView implements View {
 		if (dto.getPassword() == 0) {
 			input();
 		} else {
-			System.out.println("아이디 : " + dto.getId() + " 비밀번호 : " + dto.getPassword() + " 이름 : " + dto.getName()
-					+ " 핸드폰 번호 : " + dto.getPhone() + " 이메일 : " + dto.getEmail() + " 가입한 날짜 : " + dto.getRegdate());
+			System.out.println(dto);
 		}
 	}
 
