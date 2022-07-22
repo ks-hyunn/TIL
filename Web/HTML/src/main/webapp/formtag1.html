@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1> 폼태그 연습 </h1>
+	<form action="a.jsp">
+		아이디입력 : <input type="text" name="id" size="5" maxlength="3"><br>
+		암호입력 : <input type="password" name="pw" value="기본값"><br> <!-- value 기본으로 설정된 값 -->
+		관리자여부 : <input type="hidden" name="admin" value="true"><br> <!-- hidden 보이지않음 전송시 같이전달 -->
+		
+		성별 : <input type="radio" name="gender" value="남자"> male <!-- 단일선택 -->
+		<input type="radio" name="gender" value="여자"> female <br>
+		
+		취미 : <input type="checkbox" name="hobby" value="music"> 음악감상 <!-- 복수 선택 -->
+		<input type="checkbox" name="hobby" value="movie"> 영화보기
+		<input type="checkbox" name="hobby" value="it"> it
+		<input type="checkbox" name="hobby" value="none"> 안한다 <br>
+		
+		파일 업로드 : <input type="file" name="uploadfile"> <br>
+		<input type="image" src="images/google.png"><br> <!-- 이미지버튼 -->
+		<hr>
+		<input type = "text" name="id" size="5" maxlength="3"> <!-- 키보드 입력후에 입력 내용을 id 변수에 저장 / size 글자수 제한x 크기 표시-->
+		<input type = "submit" value="확인"> <!-- 확인누르면 id변수 전송 (action에 지정된 파일로) -->
+		<input type = "reset" value="취소">
+		<input type="button" value="아무것도안함"> <!-- 기능 사용자정의(js) -->
+	</form>
+	
+</body>
+</html>
