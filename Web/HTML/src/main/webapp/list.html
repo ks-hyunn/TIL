@@ -106,5 +106,31 @@
 			<td colspan="2">로그인</td>
 		</tr>
 	</table>
+	<hr>
+	<form> <!-- form태그는 table태그 밖으로 -->
+		<table border="1">
+			<caption>로그인 화면</caption>
+			<tr>
+				<td>
+					<b>아이디 입력</b>
+				</td>
+				<td>
+					<input type="text" name="id">
+				</td>
+				<td rowspan="2">
+					<input type="submit" value="로그인"><br>
+					<input type="reset" value="초기화">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>암호 입력</b>
+				</td>
+				<td>
+					<input type="password" name="pw">
+				</td>
+			</tr>		
+		</table>
+	</form>
 </body>
 </html>
