@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>여러줄 입력, 리스트 선택</h1>
+	<form action="a.jsp">
+		<textarea name="memo" rows="5" cols="50">여기에 입력합니다.</textarea><br> <!-- 5줄 한줄 당 50글자 -> 보여줄 크기, 글자수 제한x -->
+		오늘 점심 메뉴 고르세요
+		<select name="menu" multiple> <!-- 드랍다운 선택 / multiple ctrl+클릭 복수선택 -->
+			<option>짜장</option>
+			<option>짬뽕</option>
+			<option>우동</option>
+			<option>만두</option>
+			<option>탕수육</option>
+		</select>
+	</form>
+</body>
+</html>

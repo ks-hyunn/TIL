@@ -11,13 +11,13 @@
 		암호입력 : <input type="password" name="pw" value="기본값"><br> <!-- value 기본으로 설정된 값 -->
 		관리자여부 : <input type="hidden" name="admin" value="true"><br> <!-- hidden 보이지않음 전송시 같이전달 -->
 		
-		성별 : <input type="radio" name="gender" value="남자"> male <!-- 단일선택 -->
+		성별 : <input type="radio" name="gender" value="남자" checked> male <!-- 단일선택 / checked 기본선택 -->
 		<input type="radio" name="gender" value="여자"> female <br>
 		
 		취미 : <input type="checkbox" name="hobby" value="music"> 음악감상 <!-- 복수 선택 -->
 		<input type="checkbox" name="hobby" value="movie"> 영화보기
-		<input type="checkbox" name="hobby" value="it"> it
-		<input type="checkbox" name="hobby" value="none"> 안한다 <br>
+		<input type="checkbox" name="hobby" value="it" checked> it
+		<input type="checkbox" name="hobby" value="none" checked> 안한다 <br>
 		
 		파일 업로드 : <input type="file" name="uploadfile"> <br>
 		<input type="image" src="images/google.png"><br> <!-- 이미지버튼 -->
