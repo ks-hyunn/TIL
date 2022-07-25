@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+/*
+사각형 형태 박스 모델 취급
+태그 세로 길이 = height + margin*2 + padding*2 + border-width*2
+ */
+h1, p, img {
+/*border: 10px solid lime;*/
+border-width:20px;
+border-style:solid;
+border-color:lime;
+border-radius:20px;
+/*margin: 50px;*/ /* 전후 다른 태그들과 간격 = 외부간격 */
+margin-left: 50px;
+margin-right: 50px;
+margin-top: 50px;
+margin-bottom: 50px;
+/*margin: 10px 50px 10px 50px;*/
+padding: 50px; /* 현재태그 내부 컨텐츠와의 간격 = 내부간격 */
+width: 300px;
+height: 300px;
+/*display: inline;*/ /* 인라인 - width속성 무시 / 가로배치 */
+/*display: block;*/ /* 세로배치 */
+display: inline-block;
+}
+</style>
+<body>
+<h1>제목</h1>
+<p>본문</p>
+<img src="../images/google.png"> <!-- 기본 인라인 -->
+<img src="../images/iphone.png">
+</body>
+</html>

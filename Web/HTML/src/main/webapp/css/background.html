@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+body {
+background-image: url("../images/html5.jpg");
+background-repeat: no-repeat;
+background-attachment: fixed; /* 이미지 고정(스크롤시) */ 
+background-position: center;
+background-size: 50% 50%;
+}
+p:nth-child(1){
+font-size: 32px;
+font-family: monospace;
+background-color: orange;
+width: 300px;
+height: 300px;
+line-height: 300px; /* 글씨높이를 300px */
+}
+p:nth-child(2){
+/*font-size: 32px;
+font-family: serif;*/
+font: italic bold 32px 궁서,돋움;
+text-shadow: -5px 5px 10px red; /* 우측시작점 하단시작점 번지는정도(커질수록흐려짐) 색 */
+box-shadow: 10px 10px 5px purple;
+}
+p > a {
+text-decoration: none;
+
+}
+p:nth-child(3){
+font-size: 32px;
+font-family: 궁서, 고딕, 돋움, sans-serif; /* 앞에글꼴 있으면 적용 없으면 뒤에글꼴 -> 우선순위 */
+font-weight: bold; /* 굵기 */
+font-style: italic; /* 글씨체 */
+text-align: center; /* 정렬 */
+}
+#over{
+background-color: maroon;
+width: 100px;
+height: 100px;
+overflow: hidden;
+white-space: nowrap; /* 공백무시 */
+text-overflow: ellipsis; /*inherit 기본 - 상위속성 / ellipsis - 말줄임표 */
+}
+</style>
+<body>
+<p>멀티캠퍼스(multicampus) 소개합니다</p>
+<p><a href="http://a.com">멀티캠퍼스(multicampus) 소개합니다</a></p>
+<p>멀티캠퍼스(multicampus) 소개합니다</p>
+
+<p id="over">멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.</p>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+멀티캠퍼스는 기업교육 시장의 First Mover로서,
+20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.<br>
+
+</body>
+</html>
