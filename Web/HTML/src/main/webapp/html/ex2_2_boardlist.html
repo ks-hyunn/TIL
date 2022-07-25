@@ -4,8 +4,34 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+#title {
+background-color: aqua;
+box-shadow: -5px -5px 10px red;
+border-radius: 8px;
+color: green;
+text-align: center;
+width: 600px;
+margin-left: 30%;
+}
+#table{
+border: 1px solid pink;
+text-align: center;
+margin-left: 40%;
+}
+#firstLine{
+background-color: gray;
+}
+#table  a {
+text-decoration: none;
+}
+#page{
+margin-right: 10%;
+text-align: center;
+}
+</style>
 <body>
-	<h1>boardlist를 출력합니다.</h1>
+	<h1 id="title">boardlist를 출력합니다.</h1>
 	<form action="boardsearch.thml">
 		<select multiple>
 			<option>제목</option>
@@ -15,8 +41,8 @@
 		검색어 : <input type="text">
 		<input type="submit" value="검색">
 	</form>
-	<table border="1">
-		<tr>
+	<table id="table" border="1">
+		<tr id="firstLine">
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성자</th>
@@ -53,11 +79,13 @@
 			<td>11</td>
 		</tr>
 	</table><br>
-	<h3>페이지번호</h3>
-	<a href="ex2_2_boardlist.html">1</a>
-	<a href="ex2_2_boardlist.html">2</a>
-	<a href="ex2_2_boardlist.html">3</a>
-	<a href="ex2_2_boardlist.html">4</a>
-	<a href="ex2_2_boardlist.html">5</a>
+	<div id="page">
+		<h3>페이지번호</h3>
+		<a href="ex2_2_boardlist.html">1</a>
+		<a href="ex2_2_boardlist.html">2</a>
+		<a href="ex2_2_boardlist.html">3</a>
+		<a href="ex2_2_boardlist.html">4</a>
+		<a href="ex2_2_boardlist.html">5</a>
+	</div>
 </body>
 </html>
