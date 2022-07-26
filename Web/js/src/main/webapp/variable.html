@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script src="sample.js"></script> -->
+</head>
+<script>
+	var i = 10;
+	var k = 30;
+	var b = "<br>";
+	document.write(k + "<br>"); // 줄바꿈 <br>태그 넣어주기
+	document.write(typeof (k) + "<br>"); // 줄바꿈 <br>태그 넣어주기
+	k = "javascript";
+	document.write(k + b);
+	document.write(typeof (k) + "<br>")
+
+	a = "a변수";
+	document.write(a + b);
+	// var a; // 없어도 var자동 hoisting으로 간주 맨위로 변수 올리기
+
+	// a2 = "a2변수"; // let, const 변수는 선언확인 / 변수선언 + 값 할당 필수 
+	let a2 = "a2변수초기화";
+	a2 = "a2변수수정";
+	document.write(a2 + b);
+
+	const a3 = "a3변수";
+	// a3 = "a3변수수정"; // const 변수는 재할당 불가
+	document.write(a3 + b);
+	
+	const a4 = `멀티캠퍼스는 기업교육 시장의 First Mover로서,
+		20여 년의 교육 노하우와 최신 IT기술로 업계의 Digital Transformation을 선도하며
+		비대면 시대의 새로운 HRD 생태계를 만들어 갑니다.`
+	document.write(a4 + b);
+	
+	const a5 = 1;
+	const a6 = 2;
+	const a7 = 3;
+	const a8 = `1 + 2 + 3 의 결과는 ${a5 + a6 + a7} 입니다`; // 변수 내부에 다른변수 포함 백틱 안에 ${변수명}
+	document.write(a8 + b);
+</script>
+<body>
+
+</body>
+</html>
