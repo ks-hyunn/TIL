@@ -5,28 +5,37 @@
 <title>Insert title here</title>
 </head>
 <style>
-#title {
+body {
 background-color: aqua;
+}
+h1 {
 box-shadow: -5px -5px 10px red;
+border: 1px solid blue;
 border-radius: 8px;
 color: green;
+text-shadow: 5px 5px 10px green;
 text-align: center;
 width: 600px;
-margin-left: 30%;
+/* margin-left: 30%; */
+margin: auto; /* width지정하고 auto 중앙정렬 */
 }
-#table{
-border: 1px solid pink;
+table, th, td{
+border: 3px solid pink;
+border-collapse: collapse; /* 겹치는 선 제외 */
 text-align: center;
-margin-left: 40%;
+/* margin-left: 40%; */
+width: 500px;
+margin: auto;
 }
-#firstLine{
+table tr:first-child{
 background-color: gray;
 }
-#table  a {
+table  a {
 text-decoration: none;
 }
 #page{
-margin-right: 10%;
+/* margin-right: 10%; */
+margin: auto;
 text-align: center;
 }
 </style>
@@ -41,7 +50,7 @@ text-align: center;
 		검색어 : <input type="text">
 		<input type="submit" value="검색">
 	</form>
-	<table id="table" border="1">
+	<table id="table">
 		<tr id="firstLine">
 			<th>번호</th>
 			<th>제목</th>
@@ -87,5 +96,6 @@ text-align: center;
 		<a href="ex2_2_boardlist.html">4</a>
 		<a href="ex2_2_boardlist.html">5</a>
 	</div>
+	<a href="ex2_2_boardwrite.html">글쓰기</a>
 </body>
 </html>
