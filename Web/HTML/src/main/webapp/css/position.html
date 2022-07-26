@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+.box {
+width: 100px;
+height: 100px;
+display: block; /* 기본설정 */
+/* position: static; */ /* 기본설정 태그 나열 순서대로 배치 - top, right, bottom, left 무시 */
+/* position: absolute; */ /* 왼쪽위 기준 */
+/* position: relative; */ /* 원래 자신의 위치 기준 */
+position: fixed; /* 위치 고정 스크롤 */
+}
+.box:first-child {
+background-color: yellow;
+top: 50px;
+left: 50px;
+z-index: 3; /* 겹쳤을때 우선순위 큰수가 위 */
+}
+.box:nth-child(2) {
+background-color: blue;
+top: 70px;
+left: 70px;
+z-index: 2;
+}
+.box:nth-child(3) {
+background-color: pink;
+top: 100px;
+left: 100px;
+z-index: 1;
+}
+</style>
+<body>
+	<div class="box"></div>
+	<div class="box"></div>
+	<div class="box"></div>
+</body>
+</html>
