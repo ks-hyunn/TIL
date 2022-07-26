@@ -38,6 +38,11 @@ text-decoration: none;
 margin: auto;
 text-align: center;
 }
+/* 가로크기 1000px 미만이면 배경색, h1태그 없애기 */
+@media screen and (max-width:999px) {
+	body {background-color: white;}
+	h1 {display: none;}
+}
 </style>
 <body>
 	<h1 id="title">boardlist를 출력합니다.</h1>
