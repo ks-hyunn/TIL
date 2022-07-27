@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+</body>
+<script>
+function clock() {
+	const now = new Date();
+	document.write("<h3 style='color:red'>" + now + "</h3>"); // 표준시
+	document.write("<h3 style='color:green'>" + now.toString() + "</h3>"); // 표준시
+	document.write("<h3 style='color:blue'>" + now.toLocaleString()
+			+ "</h3>"); // 한국방식으로 표기 표준시
+	document.write("<h3 style='color:purple'>" + now.toLocaleDateString()
+			+ "</h3>"); // 날짜만
+	document.write("<h3 style='color:pink'>" + now.toLocaleTimeString()
+			+ "</h3>"); // 시간만
+
+}
+const timer = setInterval(clock, 1000); // setInterval(반복할함수, 반복할시간(밀리세컨드)) 무한루프
+// clearInterval(timer); // 인터벌 종료
+setTimeout(function() {clearInterval(timer);}, 10000); // 익명함수로 넣어주면 정상작동 / setTimeout(반복할함수, 실행될시간(밀리세컨드))
+</script>
+</html>

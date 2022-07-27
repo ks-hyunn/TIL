@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input id="clock" type="button" value="시계">
+	<input id="stop" type="button" value="중단">
+	<p id="time"></p>
+</body>
+<script>
+function clock() {
+	document.getElementById("time").innerHTML=new Date().toLocaleString(); // innerHTML html에 삽입 / document.write 기존 body 구성 요소 사라짐
+}
+
+let timer;
+document.getElementById("clock").onclick=function() {timer = setInterval(clock, 1000);}; // 함수 밖에 timer 선언 후 함수 내부에서 정의
+document.getElementById("stop").onclick=function() {clearInterval(timer);};
+</script>
+</html>

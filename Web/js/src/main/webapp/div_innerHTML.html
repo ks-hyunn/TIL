@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+div {
+width: 100px;
+height: 50px;
+background-color: green;
+}
+</style>
+</head>
+<body>
+	<input type="text" id="word" size="30" value="초기값">
+	<textarea id="memo" rows="10" cols="50">입력값</textarea>
+	<select id="select">
+		<option>1</option>
+		<option>이</option>
+		<option>three</option>
+		<option>4</option>
+		<option>오</option>
+	</select>	
+	<input type="radio" id="gender1" name="gender" value="남자"> male
+	<input type="radio" id="gender2" name="gender" value="여자"> female
+	<input type="button" id="test" value="테스트">
+	<div id="result1"></div>
+	<h1 id="result2">제목</h1>
+	<a href="#" id="result3">링크</a>
+</body>
+<script>
+	document.getElementById("test").onclick = function() {
+/* 		alert(document.getElementById("result1").innerHTML); // 태그내부 내용 조회
+		alert(document.getElementById("result2").innerHTML);
+		alert(document.getElementById("result3").innerHTML); */
+		
+/*		document.getElementById("result1").innerHTML = "<h3>div영역</h3>"; // 태그내부 내용 변경
+		document.getElementById("result2").innerHTML = "h1태그영역";
+		document.getElementById("result3").innerHTML = "a태그영역"; */
+		
+// 		const text = document.getElementById("word").value; // 인풋 입력값 조회
+//		const text = document.getElementById("memo").value;
+//		const text = document.getElementById("gender1").value;
+		const text = document.getElementById("select").value;
+		
+		document.getElementById("result1").innerHTML = text; // 인풋 입력값으로 태그내부 내용 변경
+		document.getElementById("result2").innerHTML = text;
+		document.getElementById("result3").innerHTML = text; 
+	}
+</script>
+</html>
