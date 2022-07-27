@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="a.jsp">
+		<input type="text" name="id">
+		<input type="submit" value="submit버튼"> <!-- 이벤트처리기 등록 내장 기능 버튼 / 액션으로 input값 전달 -->
+		<input type="reset" value="reset버튼"> <!-- 이벤트처리기 등록 내장 기능 버튼 / input값 초기화 -->
+		<input type="button" value="그냥버튼" onclick="alert('버튼 클릭');">
+		<input type="button" value="함수버튼" onclick="display()">
+	</form>
+<script>
+alert("처음부터 보입니다.");
+function display() {
+	alert("함수버튼 클릭");
+}
+</script>
+	<hr>
+	<input id="test" type="button" value="그냥버튼2">
+<script>
+document.getElementById("test").onclick = function() {alert("그냥버튼2 클릭")};
+</script>
+</body>
+
+</html>
