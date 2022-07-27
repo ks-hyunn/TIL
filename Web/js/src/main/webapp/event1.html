@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script>
+alert("처음부터 보입니다.");
+
+function display() {
+	alert("함수버튼 클릭");
+}
+
+onload = start; // 태그 생성 전(test) 자바스크립트 쓸 때 / 로딩되면 start
+function start() {
+	document.getElementById("test").onclick = function() {alert("그냥버튼2 클릭")};	
+}
+</script>
 <body>
 	<form action="a.jsp">
 		<input type="text" name="id">
@@ -12,17 +24,8 @@
 		<input type="button" value="그냥버튼" onclick="alert('버튼 클릭');">
 		<input type="button" value="함수버튼" onclick="display()">
 	</form>
-<script>
-alert("처음부터 보입니다.");
-function display() {
-	alert("함수버튼 클릭");
-}
-</script>
 	<hr>
 	<input id="test" type="button" value="그냥버튼2">
-<script>
-document.getElementById("test").onclick = function() {alert("그냥버튼2 클릭")};
-</script>
 </body>
 
 </html>
