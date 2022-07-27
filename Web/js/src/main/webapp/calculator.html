@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+const a = prompt("첫번째 숫자를 입력해주세요");
+const b = prompt("사칙연산자를 입력해주세요");
+const c = prompt("두번째 숫자를 입력해주세요");
+const result = b == "+" || b == "-" || b == "*" || b == "/";
+if(result == false) {
+	const cancle = confirm("잘못된 연산입니다.");
+	if(cancle == false){
+		document.write("다시 연산 내용을 입력하세요.");
+	}else {
+		document.write(Number(a) + Number(c));
+	}
+}else if(b == "+"){
+	document.write(`${a}${b}${c} = `+ (Number(a) + Number(c)));
+}else if(b == "-"){
+	document.write(`${a}${b}${c} = `+ (Number(a) - Number(c)));
+}else if(b == "*"){
+	document.write(`${a}${b}${c} = `+ (Number(a) * Number(c)));
+}else if(b == "/"){
+	document.write(`${a}${b}${c} = `+ (Number(a) / Number(c)));
+}
+
+</script>
+</body>
+</html>
