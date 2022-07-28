@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+번호 : <input type="text" id="seq">
+제목 : <input type="text" id="title">
+내용 : <input type="text" id="contents">
+<input type="button" id="save" value="저장">
+<input type="button" id="output" value="보기">
+<div>
+	<h3>게시물 출력</h3>
+	<ul id="list">
+	</ul>
+</div>
+</body>
+<script>
+function Board(seq, title, contents) {
+	this.seq = seq;
+	this.title = title;
+	this.contents = contents;
+	this.toString = function() {
+		return this.seq + " " + this.title + " " + this.contents + "<br>";
+	}
+}
+const boardlist = [];
+
+document.getElementById("save").onclick=function() {
+	const seq = document.getElementById("seq").value;
+	const title = document.getElementById("title").value;
+	const contents = document.getElementById("contents").value;
+	boardlist.push(new Board(seq, title, contents));
+	document.getElementById("list").innerHTML = "게시물이 " + boardlist.length + "개 저장되었습니다."
+}
+
+document.getElementById("output").onclick=function() {
+	let s = [];
+	for(let i = 0; i < boardlist.length; i++) {
+		s.push(boardlist[i].toString());
+	}
+	document.getElementById("list").innerHTML = "<li>" + s.join("</li><li>");
+}
+</script>
+</html>
