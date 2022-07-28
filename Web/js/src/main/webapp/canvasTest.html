@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<canvas id="mycanvas" width="600" height="400" style="border : 2px solid pink"></canvas>
+</body>
+<script>
+const mycanvas = document.getElementById("mycanvas");
+const ctx = mycanvas.getContext("2d");
+// 스타일
+ctx.strokeStyle = "red";
+ctx.fillStyle = "yellow";
+ctx.lineWidth = 5; // stroke만 영향
+// 사각형
+ctx.strokeRect(50, 50, 100, 100); // (x좌표, y좌표, 가로크기, 세로크기)
+ctx.fillRect(200, 50, 100, 100); // stroke 빈 / fill 채운
+// 삼각형
+ctx.beginPath(); // 시작
+ctx.moveTo(60, 10); // 좌표이동
+ctx.lineTo(110,100); // moveTo로 이동한 좌표부터 lineTo좌표까지 그리기
+ctx.lineTo(10,100);
+ctx.closePath(); // 종료 / 종료시 두 선 연결해서 삼각형 완성
+ctx.stroke();
+// 텍스트
+ctx.font = "40px serif";
+ctx.strokeText("Hello CanvasTest", 300, 200); // ("텍스트", x좌표, y좌ㅠㅛ)
+ctx.fillText("Hello CanvasTest", 300, 300); // ("텍스트", x좌표, y좌ㅠㅛ)
+// 이미지
+const myImage =	new Image();
+myImage.src = "/HTML/images/html5.jpg";
+// ctx.drawImage(myImage, 300, 300); (이미지, x좌표, y좌표, 너비, 높이)
+myImage.onload = function() {
+	ctx.drawImage(myImage, 300, 300, 100, 100); // 실제파일 찾아서 메모리로 이진수 이미지객체 로딩 -> 로딩 끝나면 보여줘라(아니면 시간 소요될 수 있음)
+	const copy = ctx.getImageData(100, 100, 50, 50); // 이미지 복사(부분) (이미지기준x좌표, 이미지기준y좌표, 너비, 높이)
+	ctx.putImageData(copy, 400, 300);
+	}
+</script>
+</html>
