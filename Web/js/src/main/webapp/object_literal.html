@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+const emp1 = {
+	id : 100,
+	name : "홍길동",
+	salary : 45000.00
+};
+emp1.salary = emp1.salary + 5000; // 수정
+emp1.dept = "인재개발부"; // 추가
+document.write(emp1.id + " : " + emp1.name + " : " + emp1.salary + " : " + emp1.dept + "<br>"); // 조회
+delete emp1.dept; // 삭제
+delete emp1.hiredate; // 삭제 - 없으면 무시
+document.write(emp1.id + " : " + emp1.name + " : " + emp1.salary + " : " + emp1.dept + "<br>");
+
+document.write(("dept" in emp1) + "<br>") // 프로퍼티의 객체 포함여부
+if("dept" in emp1){
+	document.write(emp1.id + " : " + emp1.name + " : " + emp1.salary + " : " + emp1.dept + "<br>");	
+} else {
+	document.write(emp1.id + " : " + emp1.name + " : " + emp1.salary + "<br>");
+}
+
+for(const v in emp1) { // 향상된 for문 - emp1에 포함된 프로퍼티 츨력
+	document.write(v + " = " + emp1.v + "<br>"); // emp1.v = undefind
+	document.write(v + " = " + emp1[v] + "<br>"); // emp1.id === emp1["id"]
+}
+</script>
+</html>
