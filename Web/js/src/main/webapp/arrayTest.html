@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+const a= [];
+document.write(a.length + "<hr><br>");
+a[0] = 10;
+a[1] = 20;
+document.write(a.length + "<hr><br>");
+a[99] = 30;
+a[1] = 200; // 수정
+document.write(a.length + "<hr><br>");
+
+/* for(let i = 0; i < a.length; i++) { // 중간값 undefined 출력
+	document.write(a[i] + "<br>");
+} */
+for(const i in a) { // 존재하는 값만 출력
+	document.write(a[i] + "<br>");
+}
+document.write("<hr>");
+
+const b = [];
+b.push(10); // 배열 끝에 추가
+b.push(20);
+b.push(30);
+b.push(40);
+b.push(50);
+for(const i in b) {
+	document.write(b[i] + "<br>");
+}
+document.write("<hr>");
+
+b.pop(); // 배열 끝 삭제
+for(const i in b) {
+	document.write(b[i] + "<br>");
+}
+document.write("<hr>");
+
+const c = [];
+c[0] = 10;
+c.unshift(20); // 배열 처음에 추가
+c.unshift(30);
+c.unshift(40);
+c.unshift(50);
+for(const i in c) {
+	document.write(c[i] + "<br>");
+}
+document.write("<hr>");
+
+c.shift(); // 배열 처음 삭제
+for(const i in c) {
+	document.write(c[i] + "<br>");
+}
+document.write("<hr>");
+
+const d = [1, 3.14, true, "배열테스트", [1, 2, 3], {id:100, name:"심한국"}];
+for(const i in d) {
+	document.write(d[i] + "<br>");
+}
+document.write("<hr>");
+const e = [1, 3.14, true, "배열테스트", [1, 2, 3], {id:100, name:"심한국", toString:function(){return this.id + " : " + this.name;}}]; // 객체 내부에 toString함수 정의 해놓으면 출력
+for(const i in e) {
+	document.write(e[i] + "<br>");
+}
+document.write("<hr>");
+// join("구분자") 배열내부 각 항목 돌면서 구분자 추가 - join 내부 반목문 포함
+document.write(e.join("<br>"));
+document.write("<hr>");
+
+// const arr = [1,2,3]; // 배열 리터럴 표현
+const arr = new Array(2,3,4,5); // [2,3,4,5] - 매개변수 여러개
+const arr4 = new Array(1, 3.14, [1,2,3]);
+const arr2 = new Array(2); // 2개짜리 배열 - 매개변수 1개(숫자)
+// const arr3 = new Array(-2); // error - 매개변수 1개(음수)
+document.write(arr4.length + "<br>");
+document.write(typeof(arr4) + "<br>");
+document.write((arr4 instanceof Array) + "<br>");
+document.write((arr4.constructor == Array) + "<br>");
+</script>
+</html>
