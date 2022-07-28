@@ -5,6 +5,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<input type="button" id="test" value="함수호출">
 </body>
+<script>
+f1(); // 함수 호출 - 호이스팅
+function f1() { // 함수 정의
+	const emp1 = { // 지역 변수
+		id : 100,
+		name : "홍길동",
+		salary : 45000.00
+	};
+	document.write("f1실행<br>");
+	document.write(emp1.name + "<br>");
+}
+f1(); // 함수 호출
+document.write("전역의 문장은 함수 호출없이 실행합니다<br>");
+
+// 익명 함수
+window.onload = function() { // 바디 문서 로딩 완료 후 자동 호출
+	document.getElementById("test").onclick = function() { // test 버튼 클릭시 자동 호출
+		alert("함수호출");
+	}
+}
+setTimeout(function(){alert("타이머에 의해 호출")}, 3000); // 3초후에 자동 호출
+</script>
 </html>

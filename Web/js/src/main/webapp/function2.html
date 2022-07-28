@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+function f1() {
+	document.write("f1호출<br>")
+}
+
+function f2() {
+	const a = 10, b = 20;
+	return a + b;
+}
+
+function f3(a, b) {
+//	return a * b;	
+	return a + b;
+}
+
+function f4(a, b) {
+	if(!isNaN(a) && !isNaN(b)) {
+		return a * b;
+	} else {
+		return a + b;
+	}
+}
+f1(); // return값 없음
+
+const result = f2(); // return값 정수
+document.write(result + "<br>");
+
+// document.write(f3(10, 20) + "<br>");
+document.write(f3("십", "이십") + "<br>");
+
+document.write(f4 + "<br>");
+document.write(f4("십", "이십") + "<br>");
+document.write(f4(10, 20) + "<br>");
+
+document.write(typeof(f4) + "<br>");
+document.write(typeof(f4(10, 20)) + "<br>");
+document.write(typeof(f4("십", "이십")) + "<br>");
+
+// 익명 함수 정의 후 바로 호출
+(function() {
+	document.write("무명의 함수입니다<br>");
+})();
+
+// 함수도 변수의 일종
+const myfunc = function() {
+	document.write("무명의 함수입니다<br>")
+}
+myfunc();
+</script>
+</html>

@@ -11,8 +11,17 @@
 const emp1 = {
 	id : 100,
 	name : "홍길동",
-	salary : 45000.00
+	salary : 45000.00,
+	test : function(salary) {
+		document.write("객체내부의 함수입니다.<br>");
+//		document.write(id + " : " + name + " : "+  salary); // error / 함수 매개변수없지만 매개변수로 인식 -> this붙혀서 사용		
+		this.salary = this.salary + salary;
+		document.write(this.id + " : " + this.name + " : "+  this.salary + "<br>");
+	}
 };
+// emp1.test();
+emp1.test(10000);
+
 emp1.salary = emp1.salary + 5000; // 수정
 emp1.dept = "인재개발부"; // 추가
 document.write(emp1.id + " : " + emp1.name + " : " + emp1.salary + " : " + emp1.dept + "<br>"); // 조회
